@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<head><script >
+    jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+</script>
+</head>
+{% if student_list %}
+<div class="page-header">
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Прізвище</th>
+        <th>Ім'я</th>
+        <th>По батькові</th>
+        <th>Бал</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        {%for student in student_list%}
+        <tr class='clickable-row' data-href="{%url 'Table:students' student.id %}">   
+        	<td><a href="{%url 'Table:students' student.id %}">{{student.lastName}}</a></td>
+        	<td>{{student.firstName}}</td>
+        	<td>{{student.midName}}</td>
+        	<td>{{student.rate}}</td>
+        </tr>
+        {%endfor%}
+   
+    </tbody>
+  </table>
+
+</div>
+</div>
+{% else %}
+    <p>No students are available.</p>
+{% endif %}
