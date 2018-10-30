@@ -6,8 +6,8 @@ class Student(models.Model):
 	midName =models.CharField(max_length=30)
 	lastName = models.CharField(max_length=30)
 	rate = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(100.0)],)
-	def __str__(self):
-		return self.lastName
 	def get_lastName(self):
-		 return 'Прізвище студента '+self.firstName + ' - ' + self.lastName+'.'
+		return 'Прізвище студента '+self.firstName + ' - ' + self.lastName+'.'
+	def get_rate(self):
+		return 'Рейтинг студента '+ self.firstName+ ' - ' + str(self.rate)+'.'
 # Create your models here.
