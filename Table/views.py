@@ -11,15 +11,15 @@ from .serializers import StudentSerializer
 
 
 
-class RESTBulletinList(generics.ListCreateAPIView):
+class RESTStudentList(generics.ListCreateAPIView):
+	queryset = Student.objects.order_by('-rate')
+	serializer_class = StudentSerializer
+
+class RESTStudentDetail(generics.RetrieveUpdateDestroyAPIView):
 	queryset = Student.objects.all()
 	serializer_class = StudentSerializer
 
-class RESTBulletinDetail(generics.RetrieveUpdateDestroyAPIView):
-	queryset = Student.objects.all()
-	serializer_class = StudentSerializer
 
-"""
 def index(request):
     student_list = Student.objects.order_by('-rate')
     template = loader.get_template('table/index.html')	
@@ -29,5 +29,5 @@ def index(request):
 def students(request, student_id):
 	student = get_object_or_404(Student, pk=student_id)
 	return render(request, 'table/detail.html', {'student': student})
-"""
+
 # Create your views here.
