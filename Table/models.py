@@ -8,4 +8,6 @@ class Student(models.Model):
 	rate = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(100.0)],)
 	def __str__(self):
 		return self.lastName
+	def get_lastName(self):
+		 return 'Прізвище студента '+self.firstName + ' - ' + self.lastName+'.'
 # Create your models here.
